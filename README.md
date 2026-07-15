@@ -1,6 +1,6 @@
-# React + TypeScript + Vite
+# IRSHAD — Верный Путь
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Исламская аудио библиотека. Официальный филиал ar-rad channel.
 
 Currently, two official plugins are available:
 
