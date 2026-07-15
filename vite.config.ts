@@ -11,18 +11,17 @@ export default defineConfig({
       manifest: {
         name: 'IRSHAD — Исламская аудио библиотека',
         short_name: 'IRSHAD',
-        description: 'Слушайте исламские лекции, тафсир, хадисы и нашиды',
+        description: 'Официальный филиал канала ar-rad channel. Аудио лекции по Исламу.',
         theme_color: '#0a0a0c',
         background_color: '#0a0a0c',
         display: 'standalone',
+        orientation: 'portrait',
         start_url: '/IRSHAD-AUDIO/',
+        scope: '/IRSHAD-AUDIO/',
+        categories: ['education', 'entertainment'],
         icons: [
-          {
-            src: 'favicon.svg',
-            sizes: '512x512',
-            type: 'image/svg+xml',
-            purpose: 'any maskable'
-          }
+          { src: 'favicon.svg', sizes: '512x512', type: 'image/svg+xml', purpose: 'any maskable' },
+          { src: 'favicon.svg', sizes: '192x192', type: 'image/svg+xml', purpose: 'any' }
         ]
       },
       workbox: {
@@ -31,18 +30,12 @@ export default defineConfig({
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
             handler: 'CacheFirst',
-            options: {
-              cacheName: 'google-fonts-cache',
-              expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 }
-            }
+            options: { cacheName: 'google-fonts-cache', expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 } }
           },
           {
-            urlPattern: /\.(?:mp3|ogg|wav)$/i,
+            urlPattern: /\.(?:mp3|ogg|wav|m4a)$/i,
             handler: 'CacheFirst',
-            options: {
-              cacheName: 'audio-cache',
-              expiration: { maxEntries: 50, maxAgeSeconds: 60 * 60 * 24 * 30 }
-            }
+            options: { cacheName: 'audio-cache', expiration: { maxEntries: 100, maxAgeSeconds: 60 * 60 * 24 * 30 } }
           }
         ]
       }
