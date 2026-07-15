@@ -1,10 +1,11 @@
-import { formatTime } from '../utils'
+import { ChevronLeft } from './Icons'
 
 export default function Home({ playlists, onNavigate, onPlayTrack, currentTrack, playing }) {
   return (
     <div className="page">
       <div className="hero-banner">
         <div className="hero-bg"></div>
+        <div className="hero-overlay"></div>
         <div className="hero-content">
           <div className="hero-title">ВЕРНЫЙ ПУТЬ</div>
           <div className="hero-subtitle">Исламская аудио библиотека · Официальный филиал ar-rad channel</div>
@@ -20,7 +21,7 @@ export default function Home({ playlists, onNavigate, onPlayTrack, currentTrack,
           {playlists.slice(0, 12).map(pl => (
             <div key={pl.id} className="playlist-card" onClick={() => onNavigate('playlist', pl.id)}>
               <div className="pc-cover" style={{background: `linear-gradient(135deg, ${pl.color}40, ${pl.color}15)`}}>
-                <span>{pl.cover}</span>
+                <span style={{fontSize:48}}>{pl.cover}</span>
                 <span className="pc-badge">{pl.count} видео</span>
               </div>
               <div className="pc-body">

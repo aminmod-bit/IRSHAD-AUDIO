@@ -1,11 +1,12 @@
 import TopBar from './TopBar'
+import { Home, Music, Search, Heart, Info } from './Icons'
 
 const NAV = [
-  { id: 'home', icon: '🏠', label: 'Главная' },
-  { id: 'playlists', icon: '🎵', label: 'Плейлисты' },
-  { id: 'search', icon: '🔍', label: 'Поиск' },
-  { id: 'favorites', icon: '❤️', label: 'Избранное' },
-  { id: 'about', icon: 'ℹ️', label: 'О нас' },
+  { id: 'home', icon: Home, label: 'Главная' },
+  { id: 'playlists', icon: Music, label: 'Плейлисты' },
+  { id: 'search', icon: Search, label: 'Поиск' },
+  { id: 'favorites', icon: Heart, label: 'Избранное' },
+  { id: 'about', icon: Info, label: 'О нас' },
 ]
 
 export default function Sidebar({ view, onNavigate, theme, onToggleTheme }) {
@@ -16,7 +17,7 @@ export default function Sidebar({ view, onNavigate, theme, onToggleTheme }) {
         <div className="sb-section">Навигация</div>
         {NAV.map(n => (
           <button key={n.id} className={`sb-item ${view === n.id ? 'active' : ''}`} onClick={() => onNavigate(n.id)}>
-            <span className="sb-icon">{n.icon}</span>
+            <span className="sb-icon"><n.icon size={18} /></span>
             <span>{n.label}</span>
           </button>
         ))}

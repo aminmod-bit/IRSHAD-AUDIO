@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react'
 import { formatTime } from '../utils'
+import { Search as SearchIcon, Heart, HeartFill, X } from './Icons'
 
 export default function Search({ playlists, onPlayTrack, currentTrack, favorites, onToggleFav }) {
   const [query, setQuery] = useState('')
@@ -24,9 +25,9 @@ export default function Search({ playlists, onPlayTrack, currentTrack, favorites
     <div className="page">
       <h1 style={{fontFamily:'var(--font-serif)',fontSize:36,fontWeight:400,fontStyle:'italic',marginBottom:24}}>Поиск</h1>
       <div className="search-bar">
-        <span style={{color:'var(--color-text-muted)',fontSize:16}}>🔍</span>
+        <span style={{color:'var(--color-text-muted)'}}><SearchIcon size={16} /></span>
         <input className="search-input" placeholder="Поиск уроков, авторов..." value={query} onChange={e => setQuery(e.target.value)} autoFocus />
-        {query && <button style={{color:'var(--color-text-subtle)',fontSize:14}} onClick={() => setQuery('')}>✕</button>}
+        {query && <button style={{color:'var(--color-text-subtle)'}} onClick={() => setQuery('')}><X size={14} /></button>}
       </div>
       {selectedPlaylist && (
         <div className="chip-row" style={{marginBottom:16}}>
@@ -57,7 +58,7 @@ export default function Search({ playlists, onPlayTrack, currentTrack, favorites
             </div>
             <span className="track-dur">{formatTime(t.duration)}</span>
             <button className={`track-fav ${favorites.includes(t.id) ? 'on' : ''}`} onClick={(e) => { e.stopPropagation(); onToggleFav(t.id) }}>
-              {favorites.includes(t.id) ? '❤️' : '🤍'}
+              {favorites.includes(t.id) ? <HeartFill size={14} /> : <Heart size={14} />}
             </button>
           </div>
         ))}

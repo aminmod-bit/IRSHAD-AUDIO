@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { formatTime } from '../utils'
+import { HeartFill } from './Icons'
 
 export default function Favorites({ playlists, favorites, onToggleFav, onPlayTrack, currentTrack }) {
   const favTracks = useMemo(() => {
@@ -24,7 +25,9 @@ export default function Favorites({ playlists, favorites, onToggleFav, onPlayTra
                 <div className="track-author">{t.author}</div>
               </div>
               <span className="track-dur">{formatTime(t.duration)}</span>
-              <button className="track-fav on" onClick={(e) => { e.stopPropagation(); onToggleFav(t.id) }}>❤️</button>
+              <button className="track-fav on" onClick={(e) => { e.stopPropagation(); onToggleFav(t.id) }}>
+                <HeartFill size={14} />
+              </button>
             </div>
           ))}
         </div>

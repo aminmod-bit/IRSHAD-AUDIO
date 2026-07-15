@@ -1,3 +1,5 @@
+import { Globe, Instagram, Send, Phone, Youtube } from './Icons'
+
 export default function About() {
   return (
     <div className="page about-page">
@@ -27,35 +29,35 @@ export default function About() {
       <h2 style={{fontSize:18,fontWeight:700,marginBottom:16}}>Ссылки</h2>
       <div className="about-links">
         <a className="about-link" href="https://ar-rad.ru" target="_blank" rel="noopener">
-          <span className="about-link-icon">🌐</span>
+          <span className="about-link-icon"><Globe size={20} /></span>
           <div>
             <div className="about-link-text">Сайт AR-RAD</div>
             <div className="about-link-url">ar-rad.ru</div>
           </div>
         </a>
         <a className="about-link" href="https://instagram.com/ar_rad.ua" target="_blank" rel="noopener">
-          <span className="about-link-icon">📷</span>
+          <span className="about-link-icon"><Instagram size={20} /></span>
           <div>
             <div className="about-link-text">Инстаграм</div>
             <div className="about-link-url">instagram.com/ar_rad.ua</div>
           </div>
         </a>
         <a className="about-link" href="https://t.me/arradru" target="_blank" rel="noopener">
-          <span className="about-link-icon">✈️</span>
+          <span className="about-link-icon"><Send size={20} /></span>
           <div>
             <div className="about-link-text">Телеграм</div>
             <div className="about-link-url">t.me/arradru</div>
           </div>
         </a>
         <a className="about-link" href="https://vk.com/ar_rad_ru" target="_blank" rel="noopener">
-          <span className="about-link-icon">📱</span>
+          <span className="about-link-icon"><Phone size={20} /></span>
           <div>
             <div className="about-link-text">Вконтакте</div>
             <div className="about-link-url">vk.com/ar_rad_ru</div>
           </div>
         </a>
         <a className="about-link" href="https://www.youtube.com/@IRSHAD_info" target="_blank" rel="noopener">
-          <span className="about-link-icon">📺</span>
+          <span className="about-link-icon"><Youtube size={20} /></span>
           <div>
             <div className="about-link-text">YouTube</div>
             <div className="about-link-url">youtube.com/@IRSHAD_info</div>

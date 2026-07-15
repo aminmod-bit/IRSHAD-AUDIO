@@ -1,11 +1,12 @@
 import { formatTime } from '../utils'
+import { ChevronLeft, Heart, HeartFill } from './Icons'
 
 export default function PlaylistDetail({ playlist, onBack, onPlayTrack, currentTrack, playing, favorites, onToggleFav }) {
   if (!playlist) return <div className="empty">Плейлист не найден</div>
   return (
     <div className="page">
       <button onClick={onBack} style={{fontSize:13,color:'var(--color-text-muted)',marginBottom:16,display:'flex',alignItems:'center',gap:6}}>
-        ← Назад
+        <ChevronLeft size={16} /> Назад
       </button>
       <div style={{display:'flex',alignItems:'center',gap:16,marginBottom:24}}>
         <div style={{width:80,height:80,borderRadius:'var(--radius-lg)',background:`linear-gradient(135deg, ${playlist.color}60, ${playlist.color}20)`,display:'flex',alignItems:'center',justifyContent:'center',fontSize:40}}>
@@ -29,7 +30,7 @@ export default function PlaylistDetail({ playlist, onBack, onPlayTrack, currentT
             </div>
             <span className="track-dur">{formatTime(t.duration)}</span>
             <button className={`track-fav ${favorites.includes(t.id) ? 'on' : ''}`} onClick={(e) => { e.stopPropagation(); onToggleFav(t.id) }}>
-              {favorites.includes(t.id) ? '❤️' : '🤍'}
+              {favorites.includes(t.id) ? <HeartFill size={14} /> : <Heart size={14} />}
             </button>
           </div>
         ))}

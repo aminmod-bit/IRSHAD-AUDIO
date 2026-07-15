@@ -1,4 +1,5 @@
 import { formatTime } from '../utils'
+import { Play, Pause, SkipBack, SkipForward, Minus10, Plus10, Repeat, RepeatOne, Volume, VolumeX, X } from './Icons'
 
 export default function FullPlayer({
   currentTrack, playing, toggle, prev, next, seek, progress, duration, pct,
@@ -11,7 +12,7 @@ export default function FullPlayer({
     <>
       <div className="pl-overlay" onClick={onClose} />
       <div className="pl-full">
-        <button className="pl-full-close" onClick={onClose}>✕</button>
+        <button className="pl-full-close" onClick={onClose}><X size={24} /></button>
         <div className="pl-full-cover" style={{background: currentTrack.color ? `linear-gradient(135deg, ${currentTrack.color}80, ${currentTrack.color}30)` : 'var(--color-surface)'}}>
           {currentTrack.cover || '🎵'}
         </div>
@@ -27,18 +28,20 @@ export default function FullPlayer({
           </div>
         </div>
         <div className="pl-full-ctrls">
-          <button className="pl-full-btn" style={{fontSize:14,color:repeat!=='off'?'var(--color-accent)':'var(--color-text-muted)'}} onClick={() => setRepeat(repeat==='off'?'all':repeat==='all'?'one':'off')}>
-            {repeat === 'one' ? '🔂' : '🔁'}
+          <button className="pl-full-btn" style={{color:repeat!=='off'?'var(--color-accent)':'var(--color-text-muted)'}} onClick={() => setRepeat(repeat==='off'?'all':repeat==='all'?'one':'off')}>
+            {repeat === 'one' ? <RepeatOne size={20} /> : <Repeat size={20} />}
           </button>
-          <button className="pl-full-btn" onClick={() => seek(Math.max(0, progress - 10))}>-10</button>
-          <button className="pl-full-btn" onClick={prev}>⏮</button>
-          <button className="pl-full-btn play" onClick={toggle}>{playing ? '⏸' : '▶'}</button>
-          <button className="pl-full-btn" onClick={next}>⏭</button>
-          <button className="pl-full-btn" onClick={() => seek(Math.min(duration, progress + 10))}>+10</button>
+          <button className="pl-full-btn" onClick={() => seek(Math.max(0, progress - 10))}><Minus10 size={16} /></button>
+          <button className="pl-full-btn" onClick={prev}><SkipBack size={22} /></button>
+          <button className="pl-full-btn play" onClick={toggle}>{playing ? <Pause size={28} /> : <Play size={28} />}</button>
+          <button className="pl-full-btn" onClick={next}><SkipForward size={22} /></button>
+          <button className="pl-full-btn" onClick={() => seek(Math.min(duration, progress + 10))}><Plus10 size={16} /></button>
         </div>
         <div className="pl-full-bottom">
           <div className="pl-vol">
-            <span className="pl-vol-icon" onClick={() => setVolume(v => v > 0 ? 0 : 1)}>{volume === 0 ? '🔇' : '🔊'}</span>
+            <span className="pl-vol-icon" onClick={() => setVolume(v => v > 0 ? 0 : 1)}>
+              {volume === 0 ? <VolumeX size={16} /> : <Volume size={16} />}
+            </span>
             <input type="range" min="0" max="1" step="0.01" value={volume} onChange={e => setVolume(parseFloat(e.target.value))} className="pl-vol-slider" />
           </div>
           <div style={{display:'flex',gap:4}}>

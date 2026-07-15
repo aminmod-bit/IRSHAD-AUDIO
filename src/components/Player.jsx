@@ -1,4 +1,5 @@
 import { formatTime } from '../utils'
+import { Play, Pause, SkipBack, SkipForward, Minus10, Plus10, Repeat, RepeatOne, Volume, VolumeX, List } from './Icons'
 
 export default function Player({
   currentTrack, playing, toggle, prev, next, seek, progress, duration, pct,
@@ -19,11 +20,11 @@ export default function Player({
           <div className="pl-author">{currentTrack.author}</div>
         </div>
         <div className="pl-controls">
-          <button className="pl-btn" onClick={() => seek(Math.max(0, progress - 10))}>-10</button>
-          <button className="pl-btn" onClick={prev}>⏮</button>
-          <button className="pl-btn play" onClick={toggle}>{playing ? '⏸' : '▶'}</button>
-          <button className="pl-btn" onClick={next}>⏭</button>
-          <button className="pl-btn" onClick={() => seek(Math.min(duration, progress + 10))}>+10</button>
+          <button className="pl-btn" onClick={() => seek(Math.max(0, progress - 10))}><Minus10 size={14} /></button>
+          <button className="pl-btn" onClick={prev}><SkipBack size={16} /></button>
+          <button className="pl-btn play" onClick={toggle}>{playing ? <Pause size={20} /> : <Play size={20} />}</button>
+          <button className="pl-btn" onClick={next}><SkipForward size={16} /></button>
+          <button className="pl-btn" onClick={() => seek(Math.min(duration, progress + 10))}><Plus10 size={14} /></button>
         </div>
         <div className="pl-right">
           <span className="pl-time">{formatTime(progress)}</span>
@@ -31,15 +32,17 @@ export default function Player({
             <div className="pl-progress-fill" style={{width:`${pct}%`}} />
           </div>
           <span className="pl-time">{formatTime(duration)}</span>
-          <button className={`pl-btn ${repeat !== 'off' ? '' : ''}`} style={{fontSize:14,color:repeat!=='off'?'var(--color-accent)':'var(--color-text-muted)'}} onClick={() => setRepeat(repeat==='off'?'all':repeat==='all'?'one':'off')}>
-            {repeat === 'one' ? '🔂' : '🔁'}
+          <button className="pl-btn" style={{color:repeat!=='off'?'var(--color-accent)':'var(--color-text-muted)'}} onClick={() => setRepeat(repeat==='off'?'all':repeat==='all'?'one':'off')}>
+            {repeat === 'one' ? <RepeatOne size={14} /> : <Repeat size={14} />}
           </button>
           <span className="pl-speed" onClick={() => setSpeed(speeds[(speeds.indexOf(speed) + 1) % speeds.length])}>{speed}x</span>
           <div className="pl-vol">
-            <span className="pl-vol-icon" onClick={() => setVolume(v => v > 0 ? 0 : 1)}>{volume === 0 ? '🔇' : '🔊'}</span>
+            <span className="pl-vol-icon" onClick={() => setVolume(v => v > 0 ? 0 : 1)}>
+              {volume === 0 ? <VolumeX size={14} /> : <Volume size={14} />}
+            </span>
             <input type="range" min="0" max="1" step="0.01" value={volume} onChange={e => setVolume(parseFloat(e.target.value))} className="pl-vol-slider" />
           </div>
-          <button className="pl-btn" style={{fontSize:14}} onClick={() => setShowQueue(!showQueue)}>☰</button>
+          <button className="pl-btn" onClick={() => setShowQueue(!showQueue)}><List size={14} /></button>
         </div>
       </div>
     </div>
